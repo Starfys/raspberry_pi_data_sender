@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import sys
 import time
 import requests
 import pickle
@@ -54,7 +55,7 @@ while True:
             post_parameters.remove(data_point)
     except:
         print("POST request unsuccessful")
-        exception = sys.exc.info()[0]
+        exception = sys.exc_info()[0]
         print(exception)
     pickle.dump(post_parameters, open("/tmp/unsent.pickle", "wb"))
     time.sleep(10)
