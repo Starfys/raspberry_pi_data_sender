@@ -1,0 +1,15 @@
+[Unit]
+Description=Sends DHT data to the service
+After=syslog.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/usr/local/src/raspberry_pi_data_sender
+ExecStart=/usr/local/src/raspberry_pi_data_sender
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
