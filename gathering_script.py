@@ -20,7 +20,8 @@ import requests
 import pickle
 import Adafruit_DHT
 
-data_url = ""
+with open("server.url","r") as server_url_file
+    server_url = server_url_file.read()
 
 
 sensor = Adafruit_DHT.DHT22
@@ -48,10 +49,10 @@ while True:
 
     post_parameters.append({'temperature':temperature, 'humidity':humidity, 'date_rec':timestamp, 'pi_num':pi_num})
     try:
-        for index in range(len(post_parameters)):
-            requests.post(data_url, data=post_parameters[index])
-            del post_parameters[index]
+        for data_point in post_parameter:
+            requests.post(server_url, data=data_point)
+            post_parameters.remove(data_point)
     except:
-        print("Data saved to pickle file")
+        print("POST request unsuccessful")
     pickle.dump(post_parameters, open("/tmp/unsent.pickle", "wb"))
     time.sleep(10)
