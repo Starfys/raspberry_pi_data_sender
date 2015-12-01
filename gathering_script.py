@@ -18,11 +18,15 @@
 import time
 import requests
 import pickle
+import Adafruit_DHT
 
 data_url = ""
 
+
+sensor = Adafruit_DHT.DHT22
+
 pi_id = 1
-gpio = 11
+pin = 11
 while True:
     #Check if there is unsent data
     try:
