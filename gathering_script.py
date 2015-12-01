@@ -49,7 +49,7 @@ while True:
     post_parameters.append({'temperature':temperature, 'humidity':humidity, 'date_rec':timestamp, 'pi_num':pi_num})
     try:
         for index in range(len(post_parameters)):
-            requests.post(data_url, params=post_parameters[index])
+            requests.post(data_url, data=post_parameters[index])
             del post_parameters[index]
     except:
         print("Data saved to pickle file")
