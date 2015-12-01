@@ -5,7 +5,9 @@ After=syslog.target
 [Service]
 Type=simple
 WorkingDirectory=/usr/local/src/raspberry_pi_data_sender
-ExecStart=/usr/local/src/raspberry_pi_data_sender
+ExecStart=/usr/local/src/raspberry_pi_data_sender/gathering_script.py
+User=root
+Group=root
 StandardOutput=syslog
 StandardError=syslog
 
