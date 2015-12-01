@@ -4,7 +4,6 @@ After=syslog.target
 
 [Service]
 Type=simple
-User=root
 WorkingDirectory=/usr/local/src/raspberry_pi_data_sender
 ExecStart=/usr/local/src/raspberry_pi_data_sender
 StandardOutput=syslog
