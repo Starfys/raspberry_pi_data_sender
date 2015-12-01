@@ -50,7 +50,7 @@ while True:
 
     post_parameters.append({'temperature':temperature, 'humidity':humidity, 'date_rec':timestamp, 'pi_num':pi_num})
     try:
-        for data_point in post_parameter:
+        for data_point in post_parameters:
             requests.post(server_url, data=data_point)
             post_parameters.remove(data_point)
     except:
