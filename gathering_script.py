@@ -19,7 +19,7 @@ import time
 import requests
 import pickle
 
-data_url = "http://makers.library.mtsu.edu/tempHumidity"
+data_url = ""
 
 while True:
     #Check if there is unsent data
