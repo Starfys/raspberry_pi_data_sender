@@ -21,6 +21,8 @@ import pickle
 
 data_url = ""
 
+pi_id = 1
+gpio = 11
 while True:
     #Check if there is unsent data
     try:
@@ -29,14 +31,18 @@ while True:
         print("No unsent data file")
         post_parameters = []
     #Get data from temperature sensor
-    temperature = 0
-    humidity = 0
+    humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+    if humidity is not None and temperature is not None:
+  		print 'Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity)
+	  else:
+		  print 'Failed to get reading. Try again!'
+
     #Get time
     timestamp = int(time.time())
-    #Pi ID
-    pi_id = 1
-    
+
+
     post_parameters.append() = {'temperature':temperature, 'humidity':humidity, 'timestamp':timestamp, 'pi_id':pi_id}
+    time.sleep(300)
     try:
         for index in range(len(post_parameters)):
             #requests.post(data_url, params=post_parameters[index])
