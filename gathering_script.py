@@ -20,7 +20,7 @@ import requests
 import pickle
 import Adafruit_DHT
 
-with open("server.url","r") as server_url_file
+with open("server.url","r") as server_url_file:
     server_url = server_url_file.read()
 
 
