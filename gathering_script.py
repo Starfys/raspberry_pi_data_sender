@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python2
 """
     Copyright 2015 Steven Sheffey
     This program is free software: you can redistribute it and/or modify
@@ -25,32 +25,33 @@ data_url = ""
 
 sensor = Adafruit_DHT.DHT22
 
-pi_id = 1
+pi_num = 1
 pin = 11
+
 while True:
     #Check if there is unsent data
     try:
-        post_parameters = pickle.load(open("/tmp/unsent.pickle", "rb")
+        post_parameters = pickle.load(open("/tmp/unsent.pickle", "rb"))
     except:
         print("No unsent data file")
         post_parameters = []
     #Get data from temperature sensor
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
     if humidity is not None and temperature is not None:
-  		print 'Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity)
-	  else:
-		  print 'Failed to get reading. Try again!'
+        print 'Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity)
+    else:
+        print 'Failed to get reading. Try again!'
 
     #Get time
     timestamp = int(time.time())
 
 
-    post_parameters.append() = {'temperature':temperature, 'humidity':humidity, 'timestamp':timestamp, 'pi_id':pi_id}
-    time.sleep(300)
+    post_parameters.append({'temperature':temperature, 'humidity':humidity, 'date_rec':timestamp, 'pi_num':pi_num})
     try:
         for index in range(len(post_parameters)):
-            #requests.post(data_url, params=post_parameters[index])
+            requests.post(data_url, params=post_parameters[index])
             del post_parameters[index]
     except:
         print("Data saved to pickle file")
     pickle.dump(post_parameters, open("/tmp/unsent.pickle", "wb"))
+    time.sleep(10)
