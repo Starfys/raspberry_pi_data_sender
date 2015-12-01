@@ -58,4 +58,4 @@ while True:
         e = sys.exc_info()[0]
         print(e)
     pickle.dump(post_parameters, open("/tmp/unsent.pickle", "wb"))
-    time.sleep(10)
+    time.sleep(300)
