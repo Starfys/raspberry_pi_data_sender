@@ -51,7 +51,7 @@ while True:
     try:
         for data_point in post_parameter:
             requests.post(server_url, data=data_point)
-            post_parameters.remove(data_point)
+            #post_parameters.remove(data_point)
     except:
         print("POST request unsuccessful")
     pickle.dump(post_parameters, open("/tmp/unsent.pickle", "wb"))
